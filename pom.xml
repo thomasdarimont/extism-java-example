@@ -53,6 +53,8 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
+                    <!-- cleanupDaemonThreads:false Needed to avoid java.lang.InterruptedException during com.sun.jna.internal.Cleaner$1.run(Cleaner.java:58)-->
+                    <!-- see: https://groups.google.com/g/jna-users/c/j0fw96PlOpM -->
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>
