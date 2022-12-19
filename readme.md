@@ -16,6 +16,14 @@ mvn verify
 ``` 
 
 # Run
+
+via `exec-maven-plugin`:
+```
+mvn compile exec:java -Dexec.mainClass="example.ExtismExample"
+```
+
+or plain java launcher:
+
 ```
 $ java -cp target/extism-java-*-with-dependencies.jar example.ExtismExample "src/main/resources/code.wasm" count_vowels "Hello World"
 ```
