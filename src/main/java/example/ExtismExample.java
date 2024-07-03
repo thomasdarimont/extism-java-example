@@ -1,10 +1,10 @@
 package example;
 
-import org.extism.sdk.Context;
+import org.extism.sdk.Plugin;
 import org.extism.sdk.manifest.Manifest;
-import org.extism.sdk.wasm.WasmSourceResolver;
+import org.extism.sdk.wasm.PathWasmSource;
 
-import java.nio.file.Path;
+import java.util.List;
 
 public class ExtismExample {
 
@@ -14,16 +14,13 @@ public class ExtismExample {
         var functionName = args.length > 1 ? args[1] : "count_vowels";
         var input = args.length > 2 ? args[2] : "Hello World";
 
-        var wasmSourceResolver = new WasmSourceResolver();
-        var manifest = new Manifest(wasmSourceResolver.resolve(Path.of(wasmPath)));
+        var manifest = new Manifest(List.of(new PathWasmSource("code", wasmPath, null)));
 
         System.out.printf("Executing \"%s\" from \"%s\" with input \"%s\"%n", functionName, wasmPath, input);
 
-        try (var ctx = new Context()) {
-            try (var plugin = ctx.newPlugin(manifest, false)) {
-                var output = plugin.call(functionName, input);
-                System.out.println(output);
-            }
+        try (var plugin = new Plugin(manifest, false, null)) {
+            var output = plugin.call(functionName, input);
+            System.out.println(output);
         }
     }
 }
