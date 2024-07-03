@@ -1,7 +1,7 @@
 Simple Usage example for the Extism Java SDK
 ---
 
-This is a simple example for using the [java-sdk](https://github.com/extism/extism/tree/main/java) of
+This is a simple example for using the [java-sdk](https://github.com/extism/java-sdk) of
 the [extism](https://extism.org/) web-assembly plugin system with a JVM application.
 
 # Setup
